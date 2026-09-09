@@ -20,8 +20,8 @@ export function Header({ cartCount, onOpenCart }: HeaderProps) {
       </div>
 
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Valentin, pagina principală">
-          VALENTIN<span>®</span>
+        <a className="wordmark" href="#top" aria-label="FitHouse, pagina principală">
+          FitHouse
         </a>
 
         <nav className="desktop-nav" aria-label="Navigație principală">

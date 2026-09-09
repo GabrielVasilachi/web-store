@@ -133,12 +133,12 @@ function App() {
       <main>
         <Hero product={featuredProduct} onAddToCart={addToCart} />
 
-        <div className="velocity-marquee" aria-label="Valentin tank lab, heavy cotton, made to move">
+        <div className="velocity-marquee" aria-label="FitHouse tank lab, heavy cotton, made to move">
           <div>
-            <span>Valentin tank lab</span><i>✦</i>
+            <span>FitHouse tank lab</span><i>✦</i>
             <span>Heavy cotton</span><i>✦</i>
             <span>Made to move</span><i>✦</i>
-            <span>Valentin tank lab</span><i>✦</i>
+            <span>FitHouse tank lab</span><i>✦</i>
             <span>Heavy cotton</span><i>✦</i>
             <span>Made to move</span><i>✦</i>
           </div>
@@ -269,16 +269,16 @@ function App() {
 
       <footer className="site-footer">
         <div className="footer-top">
-          <a className="wordmark wordmark--footer" href="#top">VALENTIN<span>®</span></a>
+          <a className="wordmark wordmark--footer" href="#top">FitHouse</a>
           <p>Maiouri create pentru<br />zile fără frână.</p>
           <div className="footer-links">
             <div><span>Explore</span><a href="#shop">Shop all</a><a href="#story">Poveste</a><a href="#quality">Fit guide</a></div>
             <div><span>Social</span><a href="#instagram">Instagram</a><a href="#tiktok">TikTok</a><a href="#pinterest">Pinterest</a></div>
-            <div><span>Help</span><a href="#shipping">Livrare</a><a href="#returns">Retur</a><a href="mailto:hello@valentin.store">Contact</a></div>
+            <div><span>Help</span><a href="#shipping">Livrare</a><a href="#returns">Retur</a><a href="mailto:hello@fithouse.store">Contact</a></div>
           </div>
         </div>
-        <div className="footer-word">VALENTIN</div>
-        <div className="footer-bottom"><span>© 2026 Valentin Tank Lab</span><span>Designed to move / RO</span></div>
+        <div className="footer-word">FitHouse</div>
+        <div className="footer-bottom"><span>© 2026 FitHouse Tank Lab</span><span>Designed to move / RO</span></div>
       </footer>
 
       <CartDrawer
