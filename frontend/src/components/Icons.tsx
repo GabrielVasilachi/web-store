@@ -20,6 +20,15 @@ export function ArrowUpRightIcon(props: IconProps) {
   )
 }
 
+export function HouseMark(props: IconProps) {
+  return (
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" {...props}>
+      <path d="M4 18 20 5l16 13v17H24V24h-8v11H4V18Z" fill="currentColor" />
+      <path d="m11 18 9-7 9 7H11Z" fill="var(--paper, #f5f3ed)" />
+    </svg>
+  )
+}
+
 export function BagIcon(props: IconProps) {
   return (
     <svg {...iconDefaults} {...props}>

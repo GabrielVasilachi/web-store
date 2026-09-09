@@ -1,111 +1,57 @@
-import { useRef, type PointerEvent } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { useRef } from 'react'
+import campaignImage from '../assets/campaign/fithouse-editorial.webp'
 import type { Product } from '../types/product'
 import { formatPrice } from '../utils/currency'
-import { ArrowUpRightIcon, PlusIcon } from './Icons'
+import { ArrowUpRightIcon, HouseMark } from './Icons'
+import { AttractLink, Reveal } from './MotionEffects'
 
 interface HeroProps {
   product: Product
-  onAddToCart: (productId: string) => void
+  onAddToCart: (productId: string, size?: string) => void
 }
 
 export function Hero({ product, onAddToCart }: HeroProps) {
   const sceneRef = useRef<HTMLDivElement>(null)
-
-  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (!window.matchMedia('(pointer: fine)').matches) return
-
-    const bounds = event.currentTarget.getBoundingClientRect()
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5
-
-    sceneRef.current?.style.setProperty('--hero-rotate-x', `${-y * 10}deg`)
-    sceneRef.current?.style.setProperty('--hero-rotate-y', `${x * 14}deg`)
-    sceneRef.current?.style.setProperty('--hero-shift-x', `${x * 18}px`)
-    sceneRef.current?.style.setProperty('--hero-shift-y', `${y * 18}px`)
-  }
-
-  const resetScene = () => {
-    sceneRef.current?.style.setProperty('--hero-rotate-x', '0deg')
-    sceneRef.current?.style.setProperty('--hero-rotate-y', '0deg')
-    sceneRef.current?.style.setProperty('--hero-shift-x', '0px')
-    sceneRef.current?.style.setProperty('--hero-shift-y', '0px')
-  }
+  const reducedMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: sceneRef, offset: ['start start', 'end start'] })
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
 
   return (
-    <section className="hero-section" id="top">
-      <div className="hero-copy">
-        <div className="eyebrow-row" data-reveal>
-          <span className="eyebrow-dot" />
-          Drop 001 / Summer forever
+    <section className="hero-section" id="top" aria-labelledby="hero-title">
+      <Reveal>
+        <div className="hero-eyebrow mono">
+          <span><i className="status-dot" /> INDEPENDENT SPIRIT. EVERYDAY UNIFORM.</span>
+          <span>EST. 2026 — BUILT TO BELONG</span>
         </div>
-
-        <h1 data-reveal>
-          <span>Wear</span>
-          <span className="hero-title-outline">the rush.</span>
-        </h1>
-
-        <div className="hero-copy__bottom" data-reveal>
-          <p>
-            Maiouri premium cu povești care se poartă tare. Croială boxy,
-            printuri curajoase și zero energie plictisitoare.
-          </p>
-          <div className="hero-actions">
-            <a className="button button--dark" href="#shop">
-              Descoperă drop-ul
-              <ArrowUpRightIcon />
-            </a>
-            <a className="text-link" href="#story">De ce Nürburgring?</a>
-          </div>
+        <div className="hero-heading">
+          <h1 id="hero-title">YOUR FIT. <span>YOUR RULES.</span></h1>
+          <HouseMark className="hero-house" />
         </div>
+      </Reveal>
+      <div className="hero-scene" ref={sceneRef}>
+        <motion.img className="hero-image" src={campaignImage}
+          alt="Campanie FitHouse: două persoane în maiouri washed black, într-un cadru urban din beton"
+          width="1536" height="1024" fetchPriority="high" style={{ y: reducedMotion ? 0 : imageY }}
+        />
+        <div className="hero-shade" />
+        <div className="hero-scene__top mono"><span>THE EVERYDAY COLLECTION</span><span>VOL. 001 / 2026</span></div>
+        <div className="hero-copy">
+          <Reveal delay={0.15}>
+            <span className="hero-copy__label">BINE AI VENIT ÎN HOUSE.</span>
+            <h2>Good fits.<br />Better energy.</h2>
+            <p>Maiouri cu personalitate. Libertate în fiecare croială.<br className="desktop-break" /> Piese care se simt la fel de bine cum arată.</p>
+            <AttractLink href="#shop" className="button--orange">Găsește-ți fit-ul</AttractLink>
+          </Reveal>
+        </div>
+        <button className="hero-featured" onClick={() => onAddToCart(product.id)} type="button" aria-label={`Adaugă ${product.name}, mărimea M, în coș`}>
+          <div className="hero-featured__image"><img src={product.image} alt="" width="100" height="150" /></div>
+          <div><span className="mono">THE SIGNATURE PIECE</span><strong>{product.name}</strong><span>{formatPrice(product.price)} <span className="hero-featured__size">/ M</span></span></div>
+          <ArrowUpRightIcon />
+        </button>
+        <span className="hero-vertical mono" aria-hidden="true">EVERY BODY. EVERY DAY.</span>
       </div>
-
-      <div
-        className="hero-showroom"
-        ref={sceneRef}
-        onPointerMove={handlePointerMove}
-        onPointerLeave={resetScene}
-        data-reveal
-      >
-        <div className="showroom-grid" aria-hidden="true" />
-        <div className="orbit orbit--one" aria-hidden="true" />
-        <div className="orbit orbit--two" aria-hidden="true" />
-        <div className="chrome-sphere chrome-sphere--one" aria-hidden="true" />
-        <div className="chrome-sphere chrome-sphere--two" aria-hidden="true" />
-
-        <div className="showroom-label showroom-label--top">
-          <span>01</span>
-          Interactive piece
-        </div>
-        <div className="showroom-label showroom-label--side">Move your cursor</div>
-
-        <div className="hero-product-object">
-          <div className="hero-product-glow" aria-hidden="true" />
-          <img
-            src={product.image}
-            alt={`Maiou ${product.name}, ${product.color}`}
-            width="768"
-            height="1152"
-            fetchPriority="high"
-          />
-        </div>
-
-        <div className="hero-product-panel">
-          <div>
-            <span>{product.subtitle}</span>
-            <strong>{product.name}</strong>
-          </div>
-          <button type="button" onClick={() => onAddToCart(product.id)} aria-label={`Adaugă ${product.name} în coș`}>
-            <PlusIcon />
-          </button>
-        </div>
-
-        <div className="hero-price">{formatPrice(product.price)}</div>
-      </div>
-
-      <a className="scroll-cue" href="#shop" aria-label="Derulează la colecție">
-        <span />
-        Scroll to explore
-      </a>
+      <div className="hero-caption mono"><span>01 / THE EVERYDAY COLLECTION</span><a href="#shop">SCROLL TO FIND YOUR FIT <span>↓</span></a><span>DESIGNED TO BE YOU.</span></div>
     </section>
   )
 }

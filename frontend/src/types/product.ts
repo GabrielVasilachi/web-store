@@ -17,5 +17,6 @@ export interface Product {
 
 export interface CartLine {
   product: Product
+  size: string
   quantity: number
 }

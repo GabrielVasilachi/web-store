@@ -13,11 +13,11 @@ export const products: readonly Product[] = [
     color: 'Washed black',
     category: 'Motorsport',
     image: nurburgringTank,
-    accent: '#dfff00',
-    surface: '#c8c9ff',
+    accent: '#383735',
+    surface: '#e9e7e0',
     description:
       'Bumbac greu, fit boxy și energia celor 20,8 km de asfalt legendar.',
-    badge: 'Hero piece',
+    badge: 'Signature piece',
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
   },
   {
@@ -28,8 +28,8 @@ export const products: readonly Product[] = [
     color: 'Electric cobalt',
     category: 'Graphic',
     image: orbitalKoiTank,
-    accent: '#ff5ac8',
-    surface: '#b8ffef',
+    accent: '#3046a2',
+    surface: '#e5e8ec',
     description:
       'Un koi cromat prins pe orbită. Print tactil pe jersey albastru intens.',
     badge: 'New',
@@ -43,8 +43,8 @@ export const products: readonly Product[] = [
     color: 'Butter yellow',
     category: 'Graphic',
     image: sunnyMotelTank,
-    accent: '#ff3d24',
-    surface: '#ffb7db',
+    accent: '#daca77',
+    surface: '#efeadf',
     description:
       'Un suvenir dintr-o vară care nu s-a terminat încă. Moale și relaxat.',
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -57,11 +57,11 @@ export const products: readonly Product[] = [
     color: 'Racing red',
     category: 'Color',
     image: redlineTank,
-    accent: '#111111',
-    surface: '#dfff00',
+    accent: '#c6372d',
+    surface: '#eee3de',
     description:
       'Roșu fără frână, linii de viteză și croială care ține pasul cu tine.',
-    badge: 'Fast mover',
+    badge: 'Pure energy',
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
   },
 ]
