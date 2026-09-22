@@ -60,7 +60,7 @@
   font: 400 10px var(--mono);
 }
 .desktop-nav a::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 3px;
@@ -299,5 +299,23 @@
   .fullscreen-menu__bottom {
     font-size: 6px;
     gap: 15px;
+  }
+}
+
+/* The expanded menu stays usable on short screens as well as phones. */
+.fullscreen-menu__top {
+  margin-bottom: 4vh;
+}
+.fullscreen-menu nav > a {
+  font-size: clamp(32px, 4.5vw, 72px);
+  padding: 15px 0;
+}
+.fullscreen-menu__bottom {
+  padding-top: 35px;
+}
+@media (max-width: 800px) {
+  .fullscreen-menu nav > a {
+    font-size: clamp(30px, 7.5vw, 60px);
+    padding: 19px 0;
   }
 }

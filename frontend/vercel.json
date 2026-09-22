@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/lookbook", "destination": "/index.html" },
+    { "source": "/fit-studio", "destination": "/index.html" }
+  ]
+}

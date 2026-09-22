@@ -10,21 +10,30 @@ import {
   SearchIcon,
 } from './Icons'
 import { ScrambleText } from './MotionEffects'
+import type { Page } from '../hooks/usePageNavigation'
 
 interface HeaderProps {
+  page: Page
   cartCount: number
   onOpenCart: () => void
   onSearch: () => void
 }
 
 const navigation = [
-  { href: '#shop', label: 'The drop', number: '01' },
-  { href: '#story', label: 'The attitude', number: '02' },
-  { href: '#quality', label: 'The details', number: '03' },
-  { href: '#club', label: 'The inner circle', number: '04' },
+  { href: '/#shop', label: 'The drop', number: '01', page: 'home' },
+  { href: '/lookbook', label: 'Lookbook', number: '02', page: 'lookbook' },
+  {
+    href: '/fit-studio',
+    label: 'Fit Studio',
+    number: '03',
+    page: 'fit-studio',
+  },
+  { href: '/#story', label: 'The attitude', number: '04' },
+  { href: '/#quality', label: 'The details', number: '05' },
+  { href: '/#club', label: 'The inner circle', number: '06' },
 ]
 
-export function Header({ cartCount, onOpenCart, onSearch }: HeaderProps) {
+export function Header({ page, cartCount, onOpenCart, onSearch }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const dialogRef = useRef<HTMLDialogElement>(null)
   const menuButton = useRef<HTMLButtonElement>(null)
@@ -63,15 +72,19 @@ export function Header({ cartCount, onOpenCart, onSearch }: HeaderProps) {
         <div className="header-inner">
           <a
             className="wordmark"
-            href="#top"
+            href="/"
             aria-label="FitHouse, pagina principală"
           >
             <HouseMark />
             FitHouse<span className="wordmark-period">®</span>
           </a>
           <nav className="desktop-nav" aria-label="Navigație principală">
-            {navigation.slice(0, 3).map(({ href, label }) => (
-              <a href={href} key={href}>
+            {navigation.slice(0, 3).map(({ href, label, page: linkPage }) => (
+              <a
+                href={href}
+                key={href}
+                aria-current={page === linkPage ? 'page' : undefined}
+              >
                 <ScrambleText text={label} />
               </a>
             ))}
@@ -150,21 +163,24 @@ export function Header({ cartCount, onOpenCart, onSearch }: HeaderProps) {
                 <CloseIcon />
               </button>
             </div>
-            <nav aria-label="Toate secțiunile">
-              {navigation.map(({ href, label, number }, index) => (
-                <motion.a
-                  href={href}
-                  key={href}
-                  onClick={() => setMenuOpen(false)}
-                  initial={reducedMotion ? false : { x: -35, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.06 }}
-                >
-                  <span className="mono">/{number}</span>
-                  <span>{label}</span>
-                  <ArrowUpRightIcon />
-                </motion.a>
-              ))}
+            <nav aria-label="Toate paginile și secțiunile">
+              {navigation.map(
+                ({ href, label, number, page: linkPage }, index) => (
+                  <motion.a
+                    href={href}
+                    key={href}
+                    aria-current={page === linkPage ? 'page' : undefined}
+                    onClick={() => setMenuOpen(false)}
+                    initial={reducedMotion ? false : { x: -35, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.06 }}
+                  >
+                    <span className="mono">/{number}</span>
+                    <span>{label}</span>
+                    <ArrowUpRightIcon />
+                  </motion.a>
+                ),
+              )}
             </nav>
             <div className="fullscreen-menu__image">
               <img

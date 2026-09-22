@@ -24,7 +24,7 @@ const questions = [
   },
 ]
 
-export function Footer() {
+export function Footer({ showExtras = true }: { showExtras?: boolean }) {
   const [emailPrepared, setEmailPrepared] = useState(false)
 
   const handleNewsletterSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -42,36 +42,40 @@ export function Footer() {
 
   return (
     <>
-      <Lookbook />
-      <section
-        className="faq-section section-space"
-        id="help"
-        aria-labelledby="faq-title"
-      >
-        <Reveal>
-          <span className="section-kicker">NO GUESSWORK.</span>
-          <h2 id="faq-title">
-            GOOD
-            <br />
-            <em>QUESTIONS.</em>
-          </h2>
-          <a className="text-link" href="mailto:hello@fithouse.store">
-            Hai să vorbim <ArrowUpRightIcon />
-          </a>
-        </Reveal>
-        <div className="faq-list">
-          {questions.map((question, index) => (
-            <details id={question.id} key={question.id}>
-              <summary>
-                <span className="mono">0{index + 1}</span>
-                <h3>{question.title}</h3>
-                <PlusIcon />
-              </summary>
-              <p>{question.answer}</p>
-            </details>
-          ))}
-        </div>
-      </section>
+      {showExtras && (
+        <>
+          <Lookbook />
+          <section
+            className="faq-section section-space"
+            id="help"
+            aria-labelledby="faq-title"
+          >
+            <Reveal>
+              <span className="section-kicker">NO GUESSWORK.</span>
+              <h2 id="faq-title">
+                GOOD
+                <br />
+                <em>QUESTIONS.</em>
+              </h2>
+              <a className="text-link" href="mailto:hello@fithouse.store">
+                Hai să vorbim <ArrowUpRightIcon />
+              </a>
+            </Reveal>
+            <div className="faq-list">
+              {questions.map((question, index) => (
+                <details id={question.id} key={question.id}>
+                  <summary>
+                    <span className="mono">0{index + 1}</span>
+                    <h3>{question.title}</h3>
+                    <PlusIcon />
+                  </summary>
+                  <p>{question.answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
       <section
         className="newsletter-section"
         id="club"
@@ -121,7 +125,7 @@ export function Footer() {
       </section>
       <footer className="site-footer">
         <div className="footer-top">
-          <a className="wordmark" href="#top">
+          <a className="wordmark" href="/">
             <HouseMark />
             FitHouse<span className="wordmark-period">®</span>
           </a>
@@ -130,9 +134,11 @@ export function Footer() {
             <br />O casă pentru stilul tău.
           </p>
           <nav className="footer-links" aria-label="Navigație subsol">
-            <a href="#shop">Colecție</a>
-            <a href="#story">Despre House</a>
-            <a href="#help">Întrebări frecvente</a>
+            <a href="/#shop">Colecție</a>
+            <a href="/lookbook">Lookbook</a>
+            <a href="/fit-studio">Fit Studio</a>
+            <a href="/#story">Despre House</a>
+            <a href="/#help">Întrebări frecvente</a>
             <a href="mailto:hello@fithouse.store">
               Contact <ArrowUpRightIcon />
             </a>
