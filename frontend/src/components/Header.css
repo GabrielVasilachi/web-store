@@ -302,20 +302,27 @@
   }
 }
 
-/* The expanded menu stays usable on short screens as well as phones. */
+/* Three generous rows fill the menu while adapting to shorter screens. */
 .fullscreen-menu__top {
   margin-bottom: 4vh;
 }
 .fullscreen-menu nav > a {
-  font-size: clamp(32px, 4.5vw, 72px);
-  padding: 15px 0;
+  min-height: clamp(110px, 20dvh, 230px);
+  font-size: clamp(44px, min(8vw, 14dvh), 148px);
+  padding: 22px 0;
+}
+.fullscreen-menu nav > a > svg {
+  width: clamp(28px, 3vw, 48px);
+  height: clamp(28px, 3vw, 48px);
+  flex-shrink: 0;
 }
 .fullscreen-menu__bottom {
   padding-top: 35px;
 }
 @media (max-width: 800px) {
   .fullscreen-menu nav > a {
-    font-size: clamp(30px, 7.5vw, 60px);
-    padding: 19px 0;
+    min-height: clamp(100px, 19dvh, 180px);
+    font-size: clamp(36px, min(10.5vw, 12dvh), 84px);
+    padding: 22px 0;
   }
 }

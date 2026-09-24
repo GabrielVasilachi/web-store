@@ -156,6 +156,16 @@ export function Footer({ showExtras = true }: { showExtras?: boolean }) {
           <span>INDEPENDENT BY NATURE.</span>
           <a href="#top">ÎNAPOI SUS ↑</a>
         </div>
+        <p className="footer-credit">
+          Made with <span role="img" aria-label="love">♥</span> by{' '}
+          <a
+            href="https://gabrielvasilachi.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Gabi
+          </a>
+        </p>
       </footer>
     </>
   )

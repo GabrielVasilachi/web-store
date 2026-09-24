@@ -20,7 +20,7 @@ interface HeaderProps {
 }
 
 const navigation = [
-  { href: '/#shop', label: 'The drop', number: '01', page: 'home' },
+  { href: '/', label: 'The drop', number: '01', page: 'home' },
   { href: '/lookbook', label: 'Lookbook', number: '02', page: 'lookbook' },
   {
     href: '/fit-studio',
@@ -28,9 +28,6 @@ const navigation = [
     number: '03',
     page: 'fit-studio',
   },
-  { href: '/#story', label: 'The attitude', number: '04' },
-  { href: '/#quality', label: 'The details', number: '05' },
-  { href: '/#club', label: 'The inner circle', number: '06' },
 ]
 
 export function Header({ page, cartCount, onOpenCart, onSearch }: HeaderProps) {
